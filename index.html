@@ -9,34 +9,35 @@
     <div class="calculator">
       <!--<input class="input-output" type="number" id="input-field">-->
       <div class="input-output" id="input-field">
-        <div id="upper"></div>
-        <div id="middle"></div>
-        <div id="lower"></div>
+        <div class="output" id="upper"></div>
+        <div class="output" id="middle"></div>
+        <div class="output" id="lower"></div>
       </div>
       <br/>
       <div class="number-pad">
-        <button class="number-button" type="button" id="nine">9</button>
-        <button class="number-button" type="button" id="eight">8</button>
-        <button class="number-button" type="button" id="seven">7</button>
+        <button class="number-button" type="button" id="nine" onClick="inputNumber(this.id)">9</button>
+        <button class="number-button" type="button" id="eight" onClick="inputNumber(this.id)">8</button>
+        <button class="number-button" type="button" id="seven" onClick="inputNumber(this.id)">7</button>
         <br/>
-        <button class="number-button" type="button" id="six">6</button>
-        <button class="number-button" type="button" id="five">5</button>
-        <button class="number-button" type="button" id="four">4</button>
+        <button class="number-button" type="button" id="six" onClick="inputNumber(this.id)">6</button>
+        <button class="number-button" type="button" id="five" onClick="inputNumber(this.id)">5</button>
+        <button class="number-button" type="button" id="four" onClick="inputNumber(this.id)">4</button>
         <br/>
-        <button class="number-button" type="button" id="three">3</button>
-        <button class="number-button" type="button" id="two">2</button>
-        <button class="number-button" type="button" id="one">1</button>
+        <button class="number-button" type="button" id="three" onClick="inputNumber(this.id)">3</button>
+        <button class="number-button" type="button" id="two" onClick="inputNumber(this.id)">2</button>
+        <button class="number-button" type="button" id="one" onClick="inputNumber(this.id)">1</button>
         <br/>
-        <button class="number-button" type="button" id="comma">.</button>
-        <button class="number-button" type="button" id="zero">0</button>
-        <button class="number-button" type="button" id="equals">=</button>
+        <button class="number-button" type="button" id="comma" onClick="inputNumber(this.id)">.</button>
+        <button class="number-button" type="button" id="zero" onClick="inputNumber(this.id)">0</button>
+        <button class="number-button" type="button" id="equal">=</button>
       </div>
       <div class="operations-pad">
-        <button class="operation-button" type="button" id="delete">DEL</button>
+        <button class="operation-button" type="button" id="clear-entry" onClick="clearNumbers(this.id)">CE</button>
+        <button class="operation-button" type="button" id="clear-all"  onClick="clearNumbers(this.id)">C</button>
         <button class="operation-button" type="button" id="plus">+</button>
         <button class="operation-button" type="button" id="minus">-</button>
-        <button class="operation-button" type="button" id="times">x</button>
-        <button class="operation-button" type="button" id="divided">/</button>
+        <button class="operation-button" type="button" id="multiply">x</button>
+        <button class="operation-button" type="button" id="divide">/</button>
       </div>
     </div>
   </body>
