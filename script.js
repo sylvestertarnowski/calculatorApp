@@ -1,44 +1,6 @@
 /* This is a calculator app. It will have basic capabilities of a calculator
 such as adding, subtracing, division, multiplication, percentage modifier. */
 
-function inputValue(n) {
-  let x = document.getElementById('middle').innerHTML;
-  let y = document.getElementById('lower').innerHTML;
-  document.getElementById('upper').innerHTML = x;
-  document.getElementById('middle').innerHTML = y;
-  setTimeout(function() {
-  document.getElementById('lower').innerHTML = n;
-  }, 20);
-}
-
-function plusSign() {
-  let n = document.getElementById('lower').innerHTML;
-  document.getElementById('middle').innerHTML = n;
-  document.getElementById('lower').innerHTML = "+";
-}
-
-function minusSign() {
-  let n = document.getElementById('lower').innerHTML;
-  document.getElementById('middle').innerHTML = n;
-  document.getElementById('lower').innerHTML = "-";
-}
-
-function multiplySign() {
-  let n = document.getElementById('lower').innerHTML;
-  document.getElementById('middle').innerHTML = n;
-  document.getElementById('lower').innerHTML = "x";
-}
-
-function divideSign() {
-  let n = document.getElementById('lower').innerHTML;
-  document.getElementById('middle').innerHTML = n;
-  document.getElementById('lower').innerHTML = "/";
-}
-
-function inputNine() {
-  document.getElementById('lower').innerHTML += "9";
-}
-
 function add(a, b) {
   let x = a + b;
   console.log(x);
@@ -63,12 +25,85 @@ function divide(a, b) {
   return x;
 }
 
-function equalSign() {
+
+function inputNumber(id) {
+  let n = document.getElementById(id).innerHTML;
+  document.getElementById('lower').innerHTML += n;
+}
+
+/* inputNumber() function above triggers, when one of the divs that
+has it as "onClick" attribute. It then takes the id of the
+clicked div (by inserting this.id there) to the scope of
+function. This one function replaces multiple number
+functions,that would otherwise have to be implemented
+(and a tried that at first LOL).*/
+
+function inputValue(n) {
+  let x = document.getElementById('middle').innerHTML;
+  let y = document.getElementById('lower').innerHTML;
+  document.getElementById('upper').innerHTML = x;
+  document.getElementById('middle').innerHTML = y;
+  setTimeout(function() {
+  document.getElementById('lower').innerHTML = n;
+  }, 20);
+}
+
+function clearNumbers(id) {
+  if (id == 'clear-entry') {
+    document.getElementById('lower').innerHTML = "";
+    return;
+  } else if (id == 'clear-all') {
+    document.getElementById('lower').innerHTML = "";
+    document.getElementById('middle').innerHTML = "";
+    document.getElementById('upper').innerHTML = "";
+    return;
+  } else console.log("Error");
+}
+
+/*Funciton aboe should be able to delete/clear all the
+input in the case of C (clear-all) or just the current
+entry CE (clear-entry).*/
+
+window.addEventListener("load", function() {
+document.getElementById('plus').onclick = function plusSign() {
+  let n = document.getElementById('lower').innerHTML;
+  document.getElementById('middle').innerHTML = n;
+  document.getElementById('lower').innerHTML = "+";
+};
+});
+
+window.addEventListener("load", function() {
+document.getElementById('minus').onclick = function minusSign() {
+  let n = document.getElementById('lower').innerHTML;
+  document.getElementById('middle').innerHTML = n;
+  document.getElementById('lower').innerHTML = "-";
+};
+});
+
+window.addEventListener("load", function() {
+document.getElementById('multiply').onclick = function multiplySign() {
+  let n = document.getElementById('lower').innerHTML;
+  document.getElementById('middle').innerHTML = n;
+  document.getElementById('lower').innerHTML = "x";
+};
+});
+
+window.addEventListener("load", function() {
+document.getElementById('divide').onclick = function divideSign() {
+  let n = document.getElementById('lower').innerHTML;
+  document.getElementById('middle').innerHTML = n;
+  document.getElementById('lower').innerHTML = "/";
+};
+});
+
+
+window.addEventListener("load", function() {
+document.getElementById('equal').onclick = function equalSign() {
   let result;
   let x = document.getElementById('upper').innerHTML;
-  let a = parseInt(x);
+  let a = parseFloat(x);
   let y = document.getElementById('lower').innerHTML;
-  let b = parseInt(y);
+  let b = parseFloat(y);
   let z = document.getElementById('middle').innerHTML;
   if (z == "+") {
     result = add(a, b);
@@ -91,6 +126,7 @@ function equalSign() {
     document.getElementById('middle').innerHTML = "";
     document.getElementById('lower').innerHTML = result;
   }, 20);
-}
+};
+});
 
 console.log("Hello world!");

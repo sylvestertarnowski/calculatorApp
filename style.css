@@ -34,11 +34,11 @@ body {
 
 .operations-pad {
   overflow:hidden;
-  width:auto;
+  width:50px;
 }
 
 .operation-button {
-  height:38px;
+  height:32px;
   width:53px;
   margin-top:2px;
   background-color:rgba(31, 214, 147, 1);
