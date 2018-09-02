@@ -3,33 +3,26 @@ such as adding, subtracing, division, multiplication, percentage modifier. */
 
 function add(a, b) {
   let x = a + b;
-  console.log(x);
   return x;
 }
 
 function subtract(a, b) {
   let x = a - b;
-  console.log(x);
   return x;
 }
 
 function multiply(a, b) {
   let x = a * b;
-  console.log(x);
   return x;
 }
 
 function divide(a, b) {
   let x = a / b;
-  console.log(x);
   return x;
 }
 
-
-// function inputNumber(id) {
-//   let n = document.getElementById(id).innerHTML;
-//   document.getElementById('lower').innerHTML += n;
-// }
+  /*The "if else" statement in function below ensures that the operator
+  symbol in the entry field is moved up when a number is pressed*/
 
 function inputNumber(id) {
   let x = document.getElementById('lower').innerHTML;
@@ -51,9 +44,9 @@ has it as "onClick" attribute. It then takes the id of the
 clicked div (by inserting this.id there) to the scope of
 function. This one function replaces multiple number
 functions,that would otherwise have to be implemented
-(and a tried that at first LOL). It also check for operation signs
+(and a tried that at first LOL). It also checks for operator symbols
 in 'lower' input, and if it encounters one, it moves everything up
-by one place in the input field.*/
+by one place in the input-output field.*/
 
 function inputValue(n) {
   let x = document.getElementById('middle').innerHTML;
@@ -63,6 +56,30 @@ function inputValue(n) {
   setTimeout(function() {
   document.getElementById('lower').innerHTML = n;
   }, 20);
+}
+
+function plusSign() {
+  let n = document.getElementById('lower').innerHTML;
+  document.getElementById('middle').innerHTML = n;
+  document.getElementById('lower').innerHTML = "+";
+}
+
+function minusSign() {
+  let n = document.getElementById('lower').innerHTML;
+  document.getElementById('middle').innerHTML = n;
+  document.getElementById('lower').innerHTML = "-";
+}
+
+function multiplySign() {
+  let n = document.getElementById('lower').innerHTML;
+  document.getElementById('middle').innerHTML = n;
+  document.getElementById('lower').innerHTML = "x";
+}
+
+function divideSign() {
+  let n = document.getElementById('lower').innerHTML;
+  document.getElementById('middle').innerHTML = n;
+  document.getElementById('lower').innerHTML = "/";
 }
 
 function clearNumbers(id) {
@@ -82,37 +99,20 @@ input in the case of C (clear-all) or just the current
 entry CE (clear-entry).*/
 
 window.addEventListener("load", function() {
-document.getElementById('plus').onclick = function plusSign() {
-  let n = document.getElementById('lower').innerHTML;
-  document.getElementById('middle').innerHTML = n;
-  document.getElementById('lower').innerHTML = "+";
-};
+document.getElementById('plus').onclick = plusSign;
 });
 
 window.addEventListener("load", function() {
-document.getElementById('minus').onclick = function minusSign() {
-  let n = document.getElementById('lower').innerHTML;
-  document.getElementById('middle').innerHTML = n;
-  document.getElementById('lower').innerHTML = "-";
-};
+document.getElementById('minus').onclick = minusSign;
 });
 
 window.addEventListener("load", function() {
-document.getElementById('multiply').onclick = function multiplySign() {
-  let n = document.getElementById('lower').innerHTML;
-  document.getElementById('middle').innerHTML = n;
-  document.getElementById('lower').innerHTML = "x";
-};
+document.getElementById('multiply').onclick = multiplySign;
 });
 
 window.addEventListener("load", function() {
-document.getElementById('divide').onclick = function divideSign() {
-  let n = document.getElementById('lower').innerHTML;
-  document.getElementById('middle').innerHTML = n;
-  document.getElementById('lower').innerHTML = "/";
-};
+document.getElementById('divide').onclick = divideSign;
 });
-
 
 window.addEventListener("load", function() {
 document.getElementById('equal').onclick = function equalSign() {
@@ -124,19 +124,14 @@ document.getElementById('equal').onclick = function equalSign() {
   let z = document.getElementById('middle').innerHTML;
   if (z == "+") {
     result = add(a, b);
-    // return result;
   } else if (z == "-") {
     result = subtract(a, b);
-    // return result;
   } else if (z == "x") {
     result = multiply(a, b);
-    // return result;
   } else if (z == "/") {
     result = divide(a, b);
-    // return result;
   } else {
-    result = "error";
-    // return result;
+    return; // equals will do nothing if operator is in entry field!
   }
   setTimeout(function(){
     document.getElementById('upper').innerHTML = "";
