@@ -26,9 +26,24 @@ function divide(a, b) {
 }
 
 
+// function inputNumber(id) {
+//   let n = document.getElementById(id).innerHTML;
+//   document.getElementById('lower').innerHTML += n;
+// }
+
 function inputNumber(id) {
-  let n = document.getElementById(id).innerHTML;
-  document.getElementById('lower').innerHTML += n;
+  let x = document.getElementById('lower').innerHTML;
+  if (x == "+" || x == "-" || x == "x" || x == "/") {
+    let middle = document.getElementById('middle').innerHTML;
+    document.getElementById('upper').innerHTML = middle;
+    document.getElementById('middle').innerHTML = x;
+    document.getElementById('lower').innerHTML = "";
+    let n = document.getElementById(id).innerHTML;
+    document.getElementById('lower').innerHTML += n;
+  } else {
+    let n = document.getElementById(id).innerHTML;
+    document.getElementById('lower').innerHTML += n;
+  }
 }
 
 /* inputNumber() function above triggers, when one of the divs that
@@ -36,7 +51,9 @@ has it as "onClick" attribute. It then takes the id of the
 clicked div (by inserting this.id there) to the scope of
 function. This one function replaces multiple number
 functions,that would otherwise have to be implemented
-(and a tried that at first LOL).*/
+(and a tried that at first LOL). It also check for operation signs
+in 'lower' input, and if it encounters one, it moves everything up
+by one place in the input field.*/
 
 function inputValue(n) {
   let x = document.getElementById('middle').innerHTML;
