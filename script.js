@@ -21,6 +21,31 @@ function divide(a, b) {
   return x;
 }
 
+function equalSign() {
+  let result;
+  let x = document.getElementById('upper').innerHTML;
+  let a = parseFloat(x);
+  let y = document.getElementById('lower').innerHTML;
+  let b = parseFloat(y);
+  let z = document.getElementById('middle').innerHTML;
+  if (z == "+") {
+    result = add(a, b);
+  } else if (z == "-") {
+    result = subtract(a, b);
+  } else if (z == "x") {
+    result = multiply(a, b);
+  } else if (z == "/") {
+    result = divide(a, b);
+  } else {
+    return; // equals will do nothing if operator is in entry field!
+  }
+  setTimeout(function(){
+    document.getElementById('upper').innerHTML = "";
+    document.getElementById('middle').innerHTML = "";
+    document.getElementById('lower').innerHTML = result;
+  }, 20);
+}
+
   /*The "if else" statement in function below ensures that the operator
   symbol in the entry field is moved up when a number is pressed*/
 
@@ -48,6 +73,32 @@ functions,that would otherwise have to be implemented
 in 'lower' input, and if it encounters one, it moves everything up
 by one place in the input-output field.*/
 
+function addPlus() {
+  let n = document.getElementById('lower').innerHTML;
+  document.getElementById('middle').innerHTML = n;
+  document.getElementById('lower').innerHTML = "+";
+}
+
+function addMinus() {
+  let n = document.getElementById('lower').innerHTML;
+  document.getElementById('middle').innerHTML = n;
+  document.getElementById('lower').innerHTML = "-";
+}
+
+function addMultiply() {
+  let n = document.getElementById('lower').innerHTML;
+  document.getElementById('middle').innerHTML = n;
+  document.getElementById('lower').innerHTML = "x";
+}
+
+function addDivide() {
+  let n = document.getElementById('lower').innerHTML;
+  document.getElementById('middle').innerHTML = n;
+  document.getElementById('lower').innerHTML = "/";
+}
+
+/*^^Above a set of functions to add analogous operator symbol^^*/
+
 function inputValue(n) {
   let x = document.getElementById('middle').innerHTML;
   let y = document.getElementById('lower').innerHTML;
@@ -59,27 +110,63 @@ function inputValue(n) {
 }
 
 function plusSign() {
-  let n = document.getElementById('lower').innerHTML;
-  document.getElementById('middle').innerHTML = n;
-  document.getElementById('lower').innerHTML = "+";
+  let l = document.getElementById('lower').innerHTML;
+  let u = document.getElementById('upper').innerHTML;
+  if (l === "+") {
+    return;
+  } else if (l === "-" || l === "x" || l === "/") {
+    document.getElementById('lower').innerHTML = "+";
+  } else if (u !== "") {
+    equalSign();
+    setTimeout(addPlus, 20);
+  } else {
+    addPlus();
+  }
 }
 
 function minusSign() {
-  let n = document.getElementById('lower').innerHTML;
-  document.getElementById('middle').innerHTML = n;
-  document.getElementById('lower').innerHTML = "-";
+  let l = document.getElementById('lower').innerHTML;
+  let u = document.getElementById('upper').innerHTML;
+  if (l === "-") {
+    return;
+  } else if (l === "+" || l === "x" || l === "/") {
+    document.getElementById('lower').innerHTML = "-";
+  } else if (u !== "") {
+    equalSign();
+    setTimeout(addMinus, 20);
+  } else {
+    addMinus();
+  }
 }
 
 function multiplySign() {
-  let n = document.getElementById('lower').innerHTML;
-  document.getElementById('middle').innerHTML = n;
-  document.getElementById('lower').innerHTML = "x";
+  let l = document.getElementById('lower').innerHTML;
+  let u = document.getElementById('upper').innerHTML;
+  if (l === "x") {
+    return;
+  } else if (l === "-" || l === "+" || l === "/") {
+    document.getElementById('lower').innerHTML = "x";
+  } else if (u !== "") {
+    equalSign();
+    setTimeout(addMultiply, 20);
+  } else {
+    addMultiply();
+  }
 }
 
 function divideSign() {
-  let n = document.getElementById('lower').innerHTML;
-  document.getElementById('middle').innerHTML = n;
-  document.getElementById('lower').innerHTML = "/";
+  let l = document.getElementById('lower').innerHTML;
+  let u = document.getElementById('upper').innerHTML;
+  if (l === "/") {
+    return;
+  } else if (l === "-" || l === "+" || l === "x") {
+    document.getElementById('lower').innerHTML = "/";
+  } else if (u !== "") {
+    equalSign();
+    setTimeout(addDivide, 20);
+  } else {
+    addDivide();
+  }
 }
 
 function clearNumbers(id) {
@@ -115,30 +202,6 @@ document.getElementById('divide').onclick = divideSign;
 });
 
 window.addEventListener("load", function() {
-document.getElementById('equal').onclick = function equalSign() {
-  let result;
-  let x = document.getElementById('upper').innerHTML;
-  let a = parseFloat(x);
-  let y = document.getElementById('lower').innerHTML;
-  let b = parseFloat(y);
-  let z = document.getElementById('middle').innerHTML;
-  if (z == "+") {
-    result = add(a, b);
-  } else if (z == "-") {
-    result = subtract(a, b);
-  } else if (z == "x") {
-    result = multiply(a, b);
-  } else if (z == "/") {
-    result = divide(a, b);
-  } else {
-    return; // equals will do nothing if operator is in entry field!
-  }
-  setTimeout(function(){
-    document.getElementById('upper').innerHTML = "";
-    document.getElementById('middle').innerHTML = "";
-    document.getElementById('lower').innerHTML = result;
-  }, 20);
-};
+document.getElementById('equal').onclick = equalSign;
 });
 
-console.log("Hello world!");
