@@ -52,21 +52,24 @@ body {
 }
 
 #upper {
-  height:32px;
+  height:30px;
   margin-bottom:0px;
-  border:1px black solid;
+  padding-top:2px;
+  padding-right:4px;
 }
 
 #middle {
-  height:32px;
+  height:30px;
   margin-bottom:0px;
-  border:1px black solid;
+  padding-top:2px;
+  padding-right:4px;
 }
 
 #lower {
-  height:32px;
-  border:1px black solid;
+  height:30px;
   margin-bottom:0px;
+  padding-top:2px;
+  padding-right:4px;
 }
 
 button:focus {outline:0;}
